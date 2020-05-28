@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Startup Name Generator',
       theme: ThemeData(          // Add the 3 lines from here...
-        primaryColor: Colors.white,
+        primaryColor: Colors.amber,
+        accentColor: Colors.blueGrey
       ),
       home: RandomWords(),// a stateful widget that returns Random names from the english words package.
     );
@@ -24,13 +25,19 @@ class RandomWordsState extends State<RandomWords> {
   // this saves users favorites name pairing.
   // the set is prefered over a list because it does not allow duplication of names
   final Set<WordPair> _saved = Set<WordPair>();
-  final TextStyle _biggerFont = const TextStyle(fontSize: 18);
+  final TextStyle _biggerFont = const TextStyle(fontSize: 18,fontFamily: 'Source Sans Pro/SourceSansPro-Regular');
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold (                   // Add from here...
       appBar: AppBar(
-        title: Text('Startup Name Generator',
+        title: Center(
+          child: Text('Startup Name Generator',
+          style: TextStyle(
+            color:Colors.black,
+            fontFamily: 'Source Sans Pro/SourceSansPro-Bold'
+          ),),
         ),
         actions: <Widget>[      // Add 3 lines from here...
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
@@ -118,7 +125,10 @@ class RandomWordsState extends State<RandomWords> {
               .toList();
           return Scaffold(         // Add 6 lines from here...
             appBar: AppBar(
-              title: Text('Saved Suggestions'),
+              title: Center(child: Text('Saved Suggestions',
+              style: TextStyle(
+                fontFamily: 'Source Sans Pro/SourceSansPro-Bold'
+              ))),
             ),
             body: ListView(children: divided),
           );
